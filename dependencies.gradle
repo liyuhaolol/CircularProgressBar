@@ -1,0 +1,32 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+ext {
+    // APP VERSION
+    androidVersionCode          = 9
+    androidVersionName          = '3.0.3'
+
+    // ANDROID VERSION
+    androidCompileSdkVersion    = 30
+    androidMinSdkVersion        = 14
+    androidTargetSdkVersion     = 30
+
+    // KOTLIN
+    kotlinStdlibGroupId         = "org.jetbrains.kotlin"
+    kotlinStdlibArtifactId      = "kotlin-stdlib"
+    kotlinStdlibVersion         = ext.kotlin_version
+    kotlinStdlib                = "$kotlinStdlibGroupId:$kotlinStdlibArtifactId:$kotlinStdlibVersion"
+
+    // ANDROID LIB
+    androidAppCompatXVersion    = '1.2.0'
+    androidXAppCompat           = "androidx.appcompat:appcompat:$androidAppCompatXVersion"
+
+    // UI
+    lobsterPickerVersion        = '1.0.1'
+    lobsterPicker               = "com.larswerkman:lobsterpicker:$lobsterPickerVersion"
+
+}

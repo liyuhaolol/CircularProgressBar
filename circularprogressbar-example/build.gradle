@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+    defaultConfig {
+        applicationId "com.mikhaellopez.circularprogressbarsample"
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    implementation project(':circularprogressbar')
+    //implementation "com.mikhaellopez:circularprogressbar:$androidVersionName"
+
+    // KOTLIN
+    implementation kotlinStdlib
+    // ANDROID
+    implementation androidXAppCompat
+    // UI
+    implementation lobsterPicker
+
+    // DEPENDENCY CHECK STRATEGY
+    //dependencyUpdates.resolutionStrategy = dependencyUpdatesStrategy
+}
