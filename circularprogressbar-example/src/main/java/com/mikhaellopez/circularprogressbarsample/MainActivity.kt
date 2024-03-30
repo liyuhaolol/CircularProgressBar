@@ -8,37 +8,39 @@ import androidx.appcompat.widget.SwitchCompat
 import com.larswerkman.lobsterpicker.OnColorListener
 import com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
-import kotlinx.android.synthetic.main.activity_main.*
+import com.mikhaellopez.circularprogressbarsample.databinding.ActivityMainBinding
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var b:ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        b = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(b.root)
 
         // Set Init progress with animation
-        circularProgressBar.setProgressWithAnimation(65f, 1000) // =1s
+        b.circularProgressBar.setProgressWithAnimation(65f, 1000) // =1s
 
         // Update circularProgressBar
-        seekBarProgress.onProgressChanged { circularProgressBar.progress = it }
-        seekBarStartAngle.onProgressChanged { circularProgressBar.startAngle = it }
-        seekBarStrokeWidth.onProgressChanged { circularProgressBar.progressBarWidth = it }
-        seekBarBackgroundStrokeWidth.onProgressChanged { circularProgressBar.backgroundProgressBarWidth = it }
-        shadeSlider.onColorChanged {
-            circularProgressBar.progressBarColor = it
-            circularProgressBar.backgroundProgressBarColor = adjustAlpha(it, 0.3f)
+        b.seekBarProgress.onProgressChanged { b.circularProgressBar.progress = it }
+        b.seekBarStartAngle.onProgressChanged { b.circularProgressBar.startAngle = it }
+        b.seekBarStrokeWidth.onProgressChanged { b.circularProgressBar.progressBarWidth = it }
+        b.seekBarBackgroundStrokeWidth.onProgressChanged { b.circularProgressBar.backgroundProgressBarWidth = it }
+        b.shadeSlider.onColorChanged {
+            b.circularProgressBar.progressBarColor = it
+            b.circularProgressBar.backgroundProgressBarColor = adjustAlpha(it, 0.3f)
         }
-        switchRoundBorder.onCheckedChange { circularProgressBar.roundBorder = it }
-        switchProgressDirection.onCheckedChange {
-            circularProgressBar.progressDirection =
+        b.switchRoundBorder.onCheckedChange { b.circularProgressBar.roundBorder = it }
+        b.switchProgressDirection.onCheckedChange {
+            b.circularProgressBar.progressDirection =
                     if (it) CircularProgressBar.ProgressDirection.TO_RIGHT
                     else CircularProgressBar.ProgressDirection.TO_LEFT
         }
 
         // Indeterminate Mode
-        switchIndeterminateMode.onCheckedChange { circularProgressBar.indeterminateMode = it }
-        circularProgressBar.onIndeterminateModeChangeListener = { switchIndeterminateMode.isChecked = it }
+        b.switchIndeterminateMode.onCheckedChange { b.circularProgressBar.indeterminateMode = it }
+        b.circularProgressBar.onIndeterminateModeChangeListener = { b.switchIndeterminateMode.isChecked = it }
     }
 
     //region Extensions
